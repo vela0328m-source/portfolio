@@ -1,0 +1,947 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Portfolio | Creative Frontend Developer</title>
+  <meta name="description" content="美しいデザインと洗練されたコードで、あなたのビジョンを形にするフロントエンドエンジニアのポートフォリオ">
+  <meta name="author" content="山田太郎">
+  <meta property="og:title" content="Portfolio | Creative Frontend Developer">
+  <meta property="og:description" content="美しいデザインと洗練されたコードで、あなたのビジョンを形にします">
+  <meta property="og:type" content="website">
+  <meta property="og:image" content="https://placehold.co/1200x630/C9A961/FFFFFF?text=Portfolio">
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>💼</text></svg>">
+  <style>
+    :root {
+      --color-primary: #C9A961;
+      --color-bg-light: #FEFEFE;
+      --color-bg-beige: #F5F1EB;
+      --color-bg-dark: #2C2C2C;
+      --color-text-dark: #2C2C2C;
+      --color-text-gray: #6B6B6B;
+      --color-text-light: #A0A0A0;
+      --spacing-xl: 120px;
+      --spacing-lg: 80px;
+      --spacing-md: 48px;
+      --spacing-sm: 24px;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Hiragino Sans', 'Hiragino Kaku Gothic ProN', Meiryo, sans-serif;
+      line-height: 1.6;
+      color: var(--color-text-dark);
+      background: #FFFFFF;
+      overflow-x: hidden;
+    }
+    
+    html {
+      scroll-behavior: smooth;
+    }
+
+    /* ========== NAVIGATION ========== */
+    .nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      background: rgba(255, 255, 255, 0.95);
+      backdrop-filter: blur(10px);
+      z-index: 1000;
+      padding: 20px 0;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+      transition: all 0.3s ease;
+    }
+    .nav-container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .nav-logo {
+      font-size: 1.25rem;
+      font-weight: 500;
+      color: var(--color-text-dark);
+      text-decoration: none;
+      letter-spacing: 0.05em;
+    }
+    .nav-menu {
+      display: flex;
+      gap: 32px;
+      list-style: none;
+    }
+    .nav-link {
+      color: var(--color-text-gray);
+      text-decoration: none;
+      font-size: 0.9375rem;
+      font-weight: 400;
+      transition: color 0.3s ease;
+      letter-spacing: 0.03em;
+    }
+    .nav-link:hover {
+      color: var(--color-primary);
+    }
+    .nav-toggle {
+      display: none;
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: 8px;
+    }
+    .nav-toggle span {
+      display: block;
+      width: 24px;
+      height: 2px;
+      background: var(--color-text-dark);
+      margin: 5px 0;
+      transition: all 0.3s ease;
+    }
+
+    /* ========== HERO ========== */
+    .hero-section {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: linear-gradient(135deg, var(--color-bg-light) 0%, var(--color-bg-beige) 100%);
+      padding: var(--spacing-lg) 20px;
+      text-align: center;
+      position: relative;
+    }
+    .hero-content {
+      max-width: 800px;
+      margin: 0 auto;
+      animation: fadeInUp 1s ease;
+    }
+    .hero-title {
+      font-size: clamp(2.5rem, 6vw, 4.5rem);
+      font-weight: 300;
+      letter-spacing: -0.02em;
+      line-height: 1.2;
+      margin: 0 0 var(--spacing-sm) 0;
+      color: var(--color-text-dark);
+    }
+    .hero-subtitle {
+      font-size: clamp(1.125rem, 2vw, 1.5rem);
+      font-weight: 400;
+      color: var(--color-text-gray);
+      margin: 0 0 var(--spacing-md) 0;
+      line-height: 1.6;
+    }
+    .hero-cta {
+      display: inline-block;
+      padding: 18px 48px;
+      background: var(--color-primary);
+      color: #FFFFFF;
+      text-decoration: none;
+      font-size: 1rem;
+      font-weight: 500;
+      letter-spacing: 0.05em;
+      border-radius: 2px;
+      transition: all 0.3s ease;
+      border: 2px solid var(--color-primary);
+    }
+    .hero-cta:hover {
+      background: transparent;
+      color: var(--color-primary);
+      transform: translateY(-2px);
+    }
+    .hero-scroll {
+      margin-top: var(--spacing-lg);
+      color: var(--color-text-light);
+      font-size: 0.875rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      animation: bounce 2s infinite;
+    }
+
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @keyframes bounce {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-10px); }
+    }
+
+    /* ========== ABOUT ========== */
+    .about-section {
+      padding: var(--spacing-xl) 20px;
+      background: #FFFFFF;
+    }
+    .about-container {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: var(--spacing-lg);
+      align-items: center;
+    }
+    .about-image {
+      position: relative;
+    }
+    .about-image::before {
+      content: '';
+      position: absolute;
+      top: 20px;
+      left: 20px;
+      right: -20px;
+      bottom: -20px;
+      background: var(--color-bg-beige);
+      border-radius: 2px;
+      z-index: -1;
+    }
+    .about-image img {
+      width: 100%;
+      height: auto;
+      object-fit: cover;
+      border-radius: 2px;
+      display: block;
+    }
+    .about-content h2 {
+      font-size: clamp(2rem, 4vw, 3rem);
+      font-weight: 300;
+      margin: 0 0 32px 0;
+      color: var(--color-text-dark);
+      letter-spacing: -0.01em;
+    }
+    .about-content p {
+      font-size: 1.125rem;
+      line-height: 1.8;
+      color: var(--color-text-gray);
+      margin: 0 0 var(--spacing-sm) 0;
+    }
+    .about-content p:last-of-type {
+      margin-bottom: 0;
+    }
+    .about-highlight {
+      color: var(--color-primary);
+      font-weight: 500;
+    }
+
+    /* ========== SKILLS ========== */
+    .skills-section {
+      padding: var(--spacing-xl) 20px;
+      background: var(--color-bg-beige);
+    }
+    .skills-container {
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+    .skills-header {
+      text-align: center;
+      margin-bottom: var(--spacing-lg);
+    }
+    .skills-header h2 {
+      font-size: clamp(2rem, 4vw, 3rem);
+      font-weight: 300;
+      margin: 0 0 16px 0;
+      color: var(--color-text-dark);
+      letter-spacing: -0.01em;
+    }
+    .skills-header p {
+      font-size: 1.125rem;
+      color: var(--color-text-gray);
+      margin: 0;
+    }
+    .skills-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 40px;
+    }
+    .skill-item {
+      background: #FFFFFF;
+      padding: var(--spacing-md) 32px;
+      text-align: center;
+      border-radius: 2px;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+    .skill-item:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+    }
+    .skill-icon {
+      width: 60px;
+      height: 60px;
+      margin: 0 auto var(--spacing-sm);
+      background: var(--color-primary);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.5rem;
+      color: #FFFFFF;
+    }
+    .skill-item h3 {
+      font-size: 1.25rem;
+      font-weight: 500;
+      margin: 0 0 16px 0;
+      color: var(--color-text-dark);
+    }
+    .skill-item p {
+      font-size: 0.9375rem;
+      line-height: 1.7;
+      color: var(--color-text-gray);
+      margin: 0;
+    }
+
+    /* ========== PROJECTS ========== */
+    .projects-section {
+      padding: var(--spacing-xl) 20px;
+      background: #FFFFFF;
+    }
+    .projects-container {
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+    .projects-header {
+      text-align: center;
+      margin-bottom: var(--spacing-lg);
+    }
+    .projects-header h2 {
+      font-size: clamp(2rem, 4vw, 3rem);
+      font-weight: 300;
+      margin: 0 0 16px 0;
+      color: var(--color-text-dark);
+      letter-spacing: -0.01em;
+    }
+    .projects-header p {
+      font-size: 1.125rem;
+      color: var(--color-text-gray);
+      margin: 0;
+    }
+    .projects-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 40px;
+    }
+    .project-card {
+      background: var(--color-bg-beige);
+      border-radius: 2px;
+      overflow: hidden;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+    .project-card:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+    }
+    .project-card-image {
+      width: 100%;
+      height: 240px;
+      overflow: hidden;
+      background: #E5E1DB;
+    }
+    .project-card-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.5s ease;
+    }
+    .project-card:hover .project-card-image img {
+      transform: scale(1.05);
+    }
+    .project-card-content {
+      padding: 32px;
+    }
+    .project-card-category {
+      font-size: 0.875rem;
+      color: var(--color-primary);
+      font-weight: 500;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      margin: 0 0 12px 0;
+    }
+    .project-card h3 {
+      font-size: 1.5rem;
+      font-weight: 500;
+      margin: 0 0 16px 0;
+      color: var(--color-text-dark);
+    }
+    .project-card p {
+      font-size: 0.9375rem;
+      line-height: 1.7;
+      color: var(--color-text-gray);
+      margin: 0 0 var(--spacing-sm) 0;
+    }
+    .project-card-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+    .project-tag {
+      font-size: 0.75rem;
+      padding: 6px 12px;
+      background: #FFFFFF;
+      color: var(--color-text-gray);
+      border-radius: 2px;
+      letter-spacing: 0.05em;
+    }
+
+    /* ========== TESTIMONIALS ========== */
+    .testimonials-section {
+      padding: var(--spacing-xl) 20px;
+      background: var(--color-bg-beige);
+    }
+    .testimonials-container {
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+    .testimonials-header {
+      text-align: center;
+      margin-bottom: var(--spacing-lg);
+    }
+    .testimonials-header h2 {
+      font-size: clamp(2rem, 4vw, 3rem);
+      font-weight: 300;
+      margin: 0 0 16px 0;
+      color: var(--color-text-dark);
+      letter-spacing: -0.01em;
+    }
+    .testimonials-header p {
+      font-size: 1.125rem;
+      color: var(--color-text-gray);
+      margin: 0;
+    }
+    .testimonials-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 40px;
+    }
+    .testimonial-card {
+      background: #FFFFFF;
+      padding: var(--spacing-md) 40px;
+      border-radius: 2px;
+      position: relative;
+    }
+    .testimonial-quote {
+      font-size: 3rem;
+      color: var(--color-primary);
+      line-height: 1;
+      margin: 0 0 var(--spacing-sm) 0;
+      font-family: Georgia, serif;
+    }
+    .testimonial-text {
+      font-size: 1rem;
+      line-height: 1.8;
+      color: var(--color-text-gray);
+      margin: 0 0 32px 0;
+    }
+    .testimonial-author {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+    .testimonial-avatar {
+      width: 56px;
+      height: 56px;
+      border-radius: 50%;
+      background: var(--color-bg-beige);
+      overflow: hidden;
+    }
+    .testimonial-avatar img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+    .testimonial-info h4 {
+      font-size: 1rem;
+      font-weight: 500;
+      margin: 0 0 4px 0;
+      color: var(--color-text-dark);
+    }
+    .testimonial-info p {
+      font-size: 0.875rem;
+      color: var(--color-text-light);
+      margin: 0;
+    }
+
+    /* ========== CTA ========== */
+    .cta-section {
+      padding: var(--spacing-xl) 20px;
+      background: linear-gradient(135deg, var(--color-bg-dark) 0%, #1A1A1A 100%);
+      text-align: center;
+    }
+    .cta-container {
+      max-width: 800px;
+      margin: 0 auto;
+    }
+    .cta-container h2 {
+      font-size: clamp(2rem, 4vw, 3rem);
+      font-weight: 300;
+      margin: 0 0 var(--spacing-sm) 0;
+      color: #FFFFFF;
+      letter-spacing: -0.01em;
+    }
+    .cta-container p {
+      font-size: 1.125rem;
+      line-height: 1.8;
+      color: #D0D0D0;
+      margin: 0 0 var(--spacing-md) 0;
+    }
+    .cta-buttons {
+      display: flex;
+      gap: var(--spacing-sm);
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+    .cta-button-primary {
+      display: inline-block;
+      padding: 18px 48px;
+      background: var(--color-primary);
+      color: #FFFFFF;
+      text-decoration: none;
+      font-size: 1rem;
+      font-weight: 500;
+      letter-spacing: 0.05em;
+      border-radius: 2px;
+      transition: all 0.3s ease;
+      border: 2px solid var(--color-primary);
+    }
+    .cta-button-primary:hover {
+      background: transparent;
+      color: var(--color-primary);
+      transform: translateY(-2px);
+    }
+    .cta-button-secondary {
+      display: inline-block;
+      padding: 18px 48px;
+      background: transparent;
+      color: #FFFFFF;
+      text-decoration: none;
+      font-size: 1rem;
+      font-weight: 500;
+      letter-spacing: 0.05em;
+      border-radius: 2px;
+      transition: all 0.3s ease;
+      border: 2px solid #FFFFFF;
+    }
+    .cta-button-secondary:hover {
+      background: #FFFFFF;
+      color: var(--color-bg-dark);
+      transform: translateY(-2px);
+    }
+    .cta-info {
+      margin-top: 64px;
+      padding-top: var(--spacing-md);
+      border-top: 1px solid rgba(255,255,255,0.1);
+    }
+    .cta-info p {
+      font-size: 0.875rem;
+      color: var(--color-text-light);
+      margin: 0 0 16px 0;
+    }
+    .cta-info a {
+      color: var(--color-primary);
+      text-decoration: none;
+      transition: opacity 0.3s ease;
+    }
+    .cta-info a:hover {
+      opacity: 0.7;
+    }
+
+    /* ========== FOOTER ========== */
+    .footer {
+      background: #1A1A1A;
+      padding: 40px 20px;
+      text-align: center;
+      color: #A0A0A0;
+    }
+    .footer-content {
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+    .footer-social {
+      display: flex;
+      justify-content: center;
+      gap: 24px;
+      margin-bottom: 24px;
+    }
+    .footer-social a {
+      color: #A0A0A0;
+      text-decoration: none;
+      transition: color 0.3s ease;
+      font-size: 1.5rem;
+    }
+    .footer-social a:hover {
+      color: var(--color-primary);
+    }
+    .footer-text {
+      font-size: 0.875rem;
+      color: #6B6B6B;
+    }
+
+    /* ========== RESPONSIVE ========== */
+    @media (max-width: 768px) {
+      :root {
+        --spacing-xl: 80px;
+        --spacing-lg: 48px;
+      }
+
+      .nav-menu {
+        position: fixed;
+        top: 70px;
+        left: 0;
+        right: 0;
+        background: rgba(255, 255, 255, 0.98);
+        flex-direction: column;
+        padding: 32px;
+        gap: 24px;
+        box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        transform: translateY(-100%);
+        opacity: 0;
+        pointer-events: none;
+        transition: all 0.3s ease;
+      }
+      .nav-menu.active {
+        transform: translateY(0);
+        opacity: 1;
+        pointer-events: all;
+      }
+      .nav-toggle {
+        display: block;
+      }
+      .about-container {
+        grid-template-columns: 1fr;
+        gap: 40px;
+      }
+      .about-image::before {
+        top: 10px;
+        left: 10px;
+        right: -10px;
+        bottom: -10px;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .cta-buttons {
+        flex-direction: column;
+      }
+      .hero-cta, .cta-button-primary, .cta-button-secondary {
+        width: 100%;
+        max-width: 300px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ========== NAVIGATION ========== -->
+  <nav class="nav">
+    <div class="nav-container">
+      <a href="#" class="nav-logo">Portfolio</a>
+      <button class="nav-toggle" aria-label="メニュー">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+      <ul class="nav-menu">
+        <li><a href="#about" class="nav-link">About</a></li>
+        <li><a href="#skills" class="nav-link">Skills</a></li>
+        <li><a href="#projects" class="nav-link">Projects</a></li>
+        <li><a href="#testimonials" class="nav-link">Testimonials</a></li>
+        <li><a href="#contact" class="nav-link">Contact</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- ========== HERO SECTION ========== -->
+  <section class="hero-section">
+    <div class="hero-content">
+      <h1 class="hero-title">Creative Frontend Developer</h1>
+      <p class="hero-subtitle">美しいデザインと洗練されたコードで、あなたのビジョンを形にします</p>
+      <a href="#contact" class="hero-cta">お問い合わせ</a>
+      <p class="hero-scroll">Scroll Down</p>
+    </div>
+  </section>
+
+  <!-- ========== ABOUT SECTION ========== -->
+  <section class="about-section" id="about">
+    <div class="about-container">
+      <div class="about-image">
+        <img src="https://placehold.co/600x700/F5F1EB/6B6B6B?text=Profile" alt="プロフィール写真" loading="lazy">
+      </div>
+      <div class="about-content">
+        <h2>About Me</h2>
+        <p>はじめまして。フロントエンドエンジニアの<span class="about-highlight">山田太郎</span>です。</p>
+        <p>Web制作を通じて、クライアント様のビジネス課題を解決することに情熱を注いでいます。美しいデザインと高いパフォーマンスを両立させたWebサイトの構築を得意としています。</p>
+        <p>ユーザー体験を第一に考え、アクセシビリティやSEOにも配慮した、長く愛されるWebサイトをお届けします。</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== SKILLS SECTION ========== -->
+  <section class="skills-section" id="skills">
+    <div class="skills-container">
+      <div class="skills-header">
+        <h2>Skills</h2>
+        <p>豊富な技術スタックで、あらゆるニーズに対応します</p>
+      </div>
+      <div class="skills-grid">
+        <div class="skill-item">
+          <div class="skill-icon">✦</div>
+          <h3>HTML / CSS</h3>
+          <p>セマンティックなマークアップと、モダンなCSSテクニックで美しいUIを実現します。</p>
+        </div>
+        <div class="skill-item">
+          <div class="skill-icon">⚡</div>
+          <h3>JavaScript</h3>
+          <p>Vanilla JSからReact、Vue.jsまで、最適なフレームワークを選定・実装します。</p>
+        </div>
+        <div class="skill-item">
+          <div class="skill-icon">📱</div>
+          <h3>Responsive Design</h3>
+          <p>あらゆるデバイスで快適に閲覧できる、レスポンシブなWebサイトを構築します。</p>
+        </div>
+        <div class="skill-item">
+          <div class="skill-icon">🎨</div>
+          <h3>UI/UX Design</h3>
+          <p>ユーザー目線に立った、使いやすく美しいインターフェースをデザインします。</p>
+        </div>
+        <div class="skill-item">
+          <div class="skill-icon">⚙️</div>
+          <h3>WordPress</h3>
+          <p>カスタムテーマ開発から既存サイトのカスタマイズまで幅広く対応します。</p>
+        </div>
+        <div class="skill-item">
+          <div class="skill-icon">🚀</div>
+          <h3>Performance</h3>
+          <p>高速で快適なWebサイトを実現するための最適化を行います。</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== PROJECTS SECTION ========== -->
+  <section class="projects-section" id="projects">
+    <div class="projects-container">
+      <div class="projects-header">
+        <h2>Projects</h2>
+        <p>これまでに手がけた制作実績の一部をご紹介します</p>
+      </div>
+      <div class="projects-grid">
+        
+        <article class="project-card">
+          <div class="project-card-image">
+            <img src="https://placehold.co/800x600/C9A961/FFFFFF?text=Project+01" alt="コーポレートサイト" loading="lazy">
+          </div>
+          <div class="project-card-content">
+            <p class="project-card-category">Corporate</p>
+            <h3>株式会社◯◯様<br>コーポレートサイト</h3>
+            <p>企業ブランディングを重視した、洗練されたコーポレートサイトを制作しました。</p>
+            <div class="project-card-tags">
+              <span class="project-tag">HTML/CSS</span>
+              <span class="project-tag">JavaScript</span>
+              <span class="project-tag">WordPress</span>
+            </div>
+          </div>
+        </article>
+        
+        <article class="project-card">
+          <div class="project-card-image">
+            <img src="https://placehold.co/800x600/A08555/FFFFFF?text=Project+02" alt="ECサイト" loading="lazy">
+          </div>
+          <div class="project-card-content">
+            <p class="project-card-category">E-Commerce</p>
+            <h3>オンラインショップ<br>△△△</h3>
+            <p>ユーザビリティを重視した、使いやすいECサイトを構築しました。</p>
+            <div class="project-card-tags">
+              <span class="project-tag">React</span>
+              <span class="project-tag">Shopify</span>
+              <span class="project-tag">UI Design</span>
+            </div>
+          </div>
+        </article>
+        
+        <article class="project-card">
+          <div class="project-card-image">
+            <img src="https://placehold.co/800x600/B8935A/FFFFFF?text=Project+03" alt="ランディングページ" loading="lazy">
+          </div>
+          <div class="project-card-content">
+            <p class="project-card-category">Landing Page</p>
+            <h3>新サービス紹介<br>ランディングページ</h3>
+            <p>高いコンバージョン率を実現する、訴求力の高いLPを制作しました。</p>
+            <div class="project-card-tags">
+              <span class="project-tag">HTML/CSS</span>
+              <span class="project-tag">Animation</span>
+              <span class="project-tag">SEO</span>
+            </div>
+          </div>
+        </article>
+        
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== TESTIMONIALS SECTION ========== -->
+  <section class="testimonials-section" id="testimonials">
+    <div class="testimonials-container">
+      <div class="testimonials-header">
+        <h2>Testimonials</h2>
+        <p>お客様からいただいた嬉しいお声</p>
+      </div>
+      <div class="testimonials-grid">
+        
+        <div class="testimonial-card">
+          <div class="testimonial-quote">"</div>
+          <p class="testimonial-text">期待以上の仕上がりで大変満足しています。細部までこだわった丁寧な仕事ぶりに感謝しています。またぜひお願いしたいです。</p>
+          <div class="testimonial-author">
+            <div class="testimonial-avatar">
+              <img src="https://placehold.co/112x112/C9A961/FFFFFF?text=A" alt="佐藤様" loading="lazy">
+            </div>
+            <div class="testimonial-info">
+              <h4>佐藤 花子 様</h4>
+              <p>株式会社ABC 代表取締役</p>
+            </div>
+          </div>
+        </div>
+        
+        <div class="testimonial-card">
+          <div class="testimonial-quote">"</div>
+          <p class="testimonial-text">コミュニケーションが丁寧で、こちらの要望を的確に形にしてくださいました。技術力の高さも素晴らしいです。</p>
+          <div class="testimonial-author">
+            <div class="testimonial-avatar">
+              <img src="https://placehold.co/112x112/A08555/FFFFFF?text=B" alt="鈴木様" loading="lazy">
+            </div>
+            <div class="testimonial-info">
+              <h4>鈴木 一郎 様</h4>
+              <p>XYZ株式会社 マーケティング部長</p>
+            </div>
+          </div>
+        </div>
+        
+        <div class="testimonial-card">
+          <div class="testimonial-quote">"</div>
+          <p class="testimonial-text">デザインのセンスが抜群で、思い描いていた以上のサイトに仕上げていただきました。納期も守っていただき安心でした。</p>
+          <div class="testimonial-author">
+            <div class="testimonial-avatar">
+              <img src="https://placehold.co/112x112/B8935A/FFFFFF?text=C" alt="田中様" loading="lazy">
+            </div>
+            <div class="testimonial-info">
+              <h4>田中 美咲 様</h4>
+              <p>個人事業主</p>
+            </div>
+          </div>
+        </div>
+        
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== CTA SECTION ========== -->
+  <section class="cta-section" id="contact">
+    <div class="cta-container">
+      <h2>お気軽にご相談ください</h2>
+      <p>あなたのプロジェクトを実現するお手伝いをさせてください。<br>まずはお気軽にお問い合わせフォームからご連絡ください。</p>
+      <div class="cta-buttons">
+        <a href="mailto:your-email@example.com" class="cta-button-primary">お問い合わせ</a>
+        <a href="#projects" class="cta-button-secondary">実績を見る</a>
+      </div>
+      <div class="cta-info">
+        <p>お急ぎの方は、お電話でもお気軽にどうぞ</p>
+        <p><a href="tel:03-1234-5678">03-1234-5678</a> (平日 10:00 - 18:00)</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== FOOTER ========== -->
+  <footer class="footer">
+    <div class="footer-content">
+      <div class="footer-social">
+        <a href="https://github.com/yourusername" target="_blank" rel="noopener noreferrer" aria-label="GitHub">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
+          </svg>
+        </a>
+        <a href="https://twitter.com/yourusername" target="_blank" rel="noopener noreferrer" aria-label="Twitter">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M23 3a10.9 10.9 0 01-3.14 1.53 4.48 4.48 0 00-7.86 3v1A10.66 10.66 0 013 4s-4 9 5 13a11.64 11.64 0 01-7 2c9 5 20 0 20-11.5a4.5 4.5 0 00-.08-.83A7.72 7.72 0 0023 3z"/>
+          </svg>
+        </a>
+        <a href="https://www.linkedin.com/in/yourusername" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6zM2 9h4v12H2z"/>
+            <circle cx="4" cy="4" r="2"/>
+          </svg>
+        </a>
+      </div>
+      <p class="footer-text">&copy; 2024 Portfolio. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <script>
+    // ========== NAVIGATION TOGGLE ==========
+    const navToggle = document.querySelector('.nav-toggle');
+    const navMenu = document.querySelector('.nav-menu');
+    const navLinks = document.querySelectorAll('.nav-link');
+
+    navToggle.addEventListener('click', () => {
+      navMenu.classList.toggle('active');
+    });
+
+    // Close menu when clicking a link
+    navLinks.forEach(link => {
+      link.addEventListener('click', () => {
+        navMenu.classList.remove('active');
+      });
+    });
+
+    // Close menu when clicking outside
+    document.addEventListener('click', (e) => {
+      if (!e.target.closest('.nav-container')) {
+        navMenu.classList.remove('active');
+      }
+    });
+
+    // ========== SCROLL EFFECTS ==========
+    const nav = document.querySelector('.nav');
+    
+    window.addEventListener('scroll', () => {
+      if (window.scrollY > 100) {
+        nav.style.padding = '12px 0';
+        nav.style.boxShadow = '0 4px 20px rgba(0,0,0,0.1)';
+      } else {
+        nav.style.padding = '20px 0';
+        nav.style.boxShadow = '0 2px 10px rgba(0,0,0,0.05)';
+      }
+    });
+
+    // ========== INTERSECTION OBSERVER FOR ANIMATIONS ==========
+    const observerOptions = {
+      threshold: 0.1,
+      rootMargin: '0px 0px -100px 0px'
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.style.opacity = '1';
+          entry.target.style.transform = 'translateY(0)';
+        }
+      });
+    }, observerOptions);
+
+    // Observe skill items, project cards, and testimonial cards
+    document.querySelectorAll('.skill-item, .project-card, .testimonial-card').forEach(el => {
+      el.style.opacity = '0';
+      el.style.transform = 'translateY(30px)';
+      el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+      observer.observe(el);
+    });
+  </script>
+
+</body>
+</html>
